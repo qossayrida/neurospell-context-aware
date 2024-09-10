@@ -1,6 +1,7 @@
 # Comparison of the four EEG headsets
 
 
+[![epoc](https://www.emotiv.com/cdn/shop/files/Emotiv-logo-white.png?v=1695617152)](https://www.emotiv.com/products/epoc-x)
 
 ## 🔗 Links
 
