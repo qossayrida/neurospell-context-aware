@@ -9,8 +9,7 @@ The 10-20 system is a widely used method in electroencephalography (EEG) for pla
 </div>
 
 ## Data Set
-
-[![BCI Competition IV](http://www.bbci.de/competition/iv/)
+[![BCI Competition IV](https://www.bbci.de/competition/iv/wct.png)](http://www.bbci.de/competition/iv/)
 
 ## What device will we use?
 [![epoc](https://www.emotiv.com/cdn/shop/files/Emotiv-logo-white.png?v=1695617152)](https://www.emotiv.com/products/epoc-x)
