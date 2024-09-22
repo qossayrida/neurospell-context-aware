@@ -8,6 +8,10 @@ The 10-20 system is a widely used method in electroencephalography (EEG) for pla
   <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/21_electrodes_of_International_10-20_system_for_EEG.svg" alt="10-20 Electrode Placement System">
 </div>
 
+## Data Set
+
+[![BCI Competition IV](http://www.bbci.de/competition/iv/)
+
 ## What device will we use?
 [![epoc](https://www.emotiv.com/cdn/shop/files/Emotiv-logo-white.png?v=1695617152)](https://www.emotiv.com/products/epoc-x)
 
