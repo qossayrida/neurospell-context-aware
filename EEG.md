@@ -15,6 +15,8 @@ The 10-20 system is a widely used method in electroencephalography (EEG) for pla
 
 [GitHub](https://github.com/MikeWangWZHL/EEG-To-Text)
 
+[GitHub](https://github.com/andreafresco/P300-Speller/tree/main)
+
 ## What device will we use?
 [![epoc](https://www.emotiv.com/cdn/shop/files/Emotiv-logo-white.png?v=1695617152)](https://www.emotiv.com/products/epoc-x)
 
