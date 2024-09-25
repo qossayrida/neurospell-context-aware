@@ -8,6 +8,21 @@ The 10-20 system is a widely used method in electroencephalography (EEG) for pla
   <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/21_electrodes_of_International_10-20_system_for_EEG.svg" alt="10-20 Electrode Placement System">
 </div>
 
+
+## P300 speller
+
+A **P300 speller** is a brain-computer interface (BCI) system that enables communication for individuals with severe motor impairments, such as those with locked-in syndrome. It is based on the P300 event-related potential (ERP), a measurable brainwave that occurs approximately 300 milliseconds after a person recognizes a stimulus (hence the name "P300").
+
+how it typically works:
+
+1. **Grid Display**: The user is presented with a grid of letters or symbols on a screen, and the rows and columns of the grid flash in random order.
+   
+2. **Target Recognition**: The user is asked to focus on the character they want to select, and when the row or column containing that character flashes, it triggers a P300 response in their brain.
+
+3. **Signal Detection**: Electroencephalography (EEG) sensors record brain signals. The system detects the P300 signal corresponding to the flashed row or column, and after several repetitions, it identifies the desired character.
+
+4. **Character Selection**: Based on the detected P300 responses, the system selects and displays the character the user is focusing on.
+
 ## Data Set
 [![BCI Competition IV](https://www.bbci.de/competition/iv/wct.png)](http://www.bbci.de/competition/iv/)
 
