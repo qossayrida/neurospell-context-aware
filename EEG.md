@@ -33,6 +33,8 @@ how it typically works:
 [GitHub](https://github.com/andreafresco/P300-Speller/tree/main)
 
 ## What device will we use?
+
+[Performance of the Emotiv Epoc headset for P300-based applications](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3710229/)
 [![epoc](https://www.emotiv.com/cdn/shop/files/Emotiv-logo-white.png?v=1695617152)](https://www.emotiv.com/products/epoc-x)
 
 ## 🔗 Links
