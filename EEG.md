@@ -37,6 +37,11 @@ how it typically works:
 [Performance of the Emotiv Epoc headset for P300-based applications](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3710229/)
 [![epoc](https://www.emotiv.com/cdn/shop/files/Emotiv-logo-white.png?v=1695617152)](https://www.emotiv.com/products/epoc-x)
 
+
+## Youtube
+
+[P300 Speller with V-AMP y Open ViBE](https://www.youtube.com/watch?v=z-KZWyEJPbc)
+
 ## 🔗 Links
 
 [![facebook](https://img.shields.io/badge/facebook-0077B5?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/qossay.rida?mibextid=2JQ9oc)
