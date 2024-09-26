@@ -32,6 +32,8 @@ how it typically works:
 
 [GitHub](https://github.com/andreafresco/P300-Speller/tree/main)
 
+[GitHub](https://github.com/vtr0n/p300-speller?tab=readme-ov-file)
+
 ## What device will we use?
 
 [Performance of the Emotiv Epoc headset for P300-based applications](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3710229/)
