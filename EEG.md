@@ -24,9 +24,13 @@ how it typically works:
 4. **Character Selection**: Based on the detected P300 responses, the system selects and displays the character the user is focusing on.
 
 ## Data Set
+
+
 [![BCI Competition IV](https://www.bbci.de/competition/iv/wct.png)](http://www.bbci.de/competition/iv/)
 
 [![BNCI](http://bnci-horizon-2020.eu/images/logo_BNCI.png)](http://bnci-horizon-2020.eu/database/data-sets)
+
+[Open BCI](https://openbci.com/community/publicly-available-eeg-datasets/)
 
 [GitHub](https://github.com/MikeWangWZHL/EEG-To-Text)
 
