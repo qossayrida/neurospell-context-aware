@@ -32,11 +32,19 @@ how it typically works:
 
 [Open BCI](https://openbci.com/community/publicly-available-eeg-datasets/)
 
-[GitHub](https://github.com/MikeWangWZHL/EEG-To-Text)
+[EEG-To-Text 1](https://github.com/MikeWangWZHL/EEG-To-Text)
 
-[GitHub](https://github.com/andreafresco/P300-Speller/tree/main)
+[EEG-To-Text 2](https://github.com/NeuSpeech/EEG-To-Text)
 
-[GitHub](https://github.com/vtr0n/p300-speller?tab=readme-ov-file)
+[P-300 Speller](https://github.com/andreafresco/P300-Speller)
+
+[P-300 Speller](https://github.com/garza-roberto/P300_Speller)
+
+[P-300 Speller](https://github.com/vtr0n/p300-speller?tab=readme-ov-file)
+
+[P300-speller-for-BCI](https://github.com/rbnrtg/P300-speller-for-BCI)
+
+[RealTime BrainMobilePhone Interface](https://github.com/NorhanAbdelhafez/NeuroPhone-RealTime-BrainMobilePhone-Interface)
 
 ## What device will we use?
 
