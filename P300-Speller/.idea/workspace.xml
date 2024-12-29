@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bad9d27-4824-4edb-a500-6a10740c3f03" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/p300/audio/audio.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/p300/audio/stimulus.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/p300/audio/ui.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/p300/audio/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jupyter/data_analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/jupyter/data_analysis.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../code/jupyter/CNN1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/data/channels.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../code/data/channels.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/jupyter/CNN1_model.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../code/jupyter/CNN1_model.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/jupyter/data_analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../code/jupyter/data_analysis.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +31,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/University/Year 4 semester 1/ENCS5341/MachineLearning-DataScience/Assignment3/SetOfMachineLearningAlgorithm",
+    "last_opened_file_path": "D:/University/Year 4 semester 1/ENCS5200/BrainWaveResearch/P300-Speller",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -77,6 +75,7 @@
       <updated>1733762933973</updated>
       <workItem from="1733762935016" duration="1508000" />
       <workItem from="1733824165636" duration="2169000" />
+      <workItem from="1735507534818" duration="31000" />
     </task>
     <servers />
   </component>
