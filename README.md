@@ -58,3 +58,49 @@
 
 ### **9. References**
    - Include citations for all referenced works.
+
+
+
+
+#### **CNN1**
+- **Channels**: Trained on all 64 EEG channels.
+- **Purpose**: Serves as the baseline model for detecting P300 signals using all available data.
+
+
+#### **CNN2a**
+- **Channels**: Fixed subset of 8 channels (FZ, CZ, PZ, P3, P4, PO7, PO8, OZ) as per the 10-20 system.
+- **Purpose**: Tests if a predefined set of electrodes, considered important for P300 detection, is sufficient.
+
+#### **CNN2c**
+- **Channels**: Topological subsets grouped by brain regions:
+  - F: Frontal lobe.
+  - C: Central lobe.
+  - P: Parietal lobe.
+  - O: Occipital lobe.
+  - LT: Left temporal lobe.
+  - RT: Right temporal lobe.
+- **Purpose**: Explores region-specific performance, examining which brain lobe provides the most relevant signals.
+
+
+
+### **Multiclassifier Models (MCNN)**
+- **General Description**: Ensemble of CNN1 models, each trained on specific data subsets.
+
+#### **MCNN1**
+- **Training Strategy**: Each of the 5 CNN1 models is trained on a different **balanced subset** of the data.
+- **Purpose**: Reduces class imbalance issues to enhance robustness.
+
+#### **MCNN3**
+- **Training Strategy**: Three CNN1 models trained on the **entire dataset**.
+- **Purpose**: Focuses on improving robustness by combining outputs from multiple identical models.
+
+---
+
+### **Summary of Key Differences**
+| Model      | Channels Used          | Data Subset/Strategy                               | Purpose                                  |
+|------------|-------------------------|---------------------------------------------------|------------------------------------------|
+| **CNN1**   | All 64 EEG channels     | Weighted dataset                                  | Baseline model.                         |
+| **CNN2a**  | 8 fixed channels        | Weighted dataset                                  | Test predefined subset of electrodes.   |
+| **CNN2c**  | Topological subsets     | Weighted dataset                                  | Analyze region-specific performance.    |
+| **MCNN1**  | All 64 EEG channels     | Different balanced subsets                       | Handle class imbalance.                 |
+| **MCNN3**  | All 64 EEG channels     | Whole dataset for each classifier                | Boost performance through ensemble.     |
