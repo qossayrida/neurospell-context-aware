@@ -5,9 +5,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bad9d27-4824-4edb-a500-6a10740c3f03" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../code/jupyter/CNN1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/BrainWaveResearch.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/BrainWaveResearch.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jupyter-settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jupyter-settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jupyter/data_analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/jupyter/data_analysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/audio/audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/audio/audio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/audio/stimulus.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/audio/stimulus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/audio/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/audio/ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/emotiv/cortex.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/emotiv/cortex.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/emotiv/emotiv.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/emotiv/emotiv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/emotiv/lsl_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/emotiv/lsl_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/emotiv/lsl_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/emotiv/lsl_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/speller/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/speller/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/speller/speller.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/speller/speller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/speller/stimulus.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/speller/stimulus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/speller/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/speller/ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/speller/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/speller/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/speller_random/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/speller_random/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/speller_random/speller.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/speller_random/speller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/speller_random/stimulus.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/speller_random/stimulus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/speller_random/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/speller_random/ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/speller_random/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/speller_random/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/visual/stimulus.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/visual/stimulus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/visual/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/visual/ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p300/visual/visual.py" beforeDir="false" afterPath="$PROJECT_DIR$/p300/visual/visual.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../code/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/.idea/code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../code/.idea/code.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../code/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../code/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../code/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/bundle/DataCraft.py" beforeDir="false" afterPath="$PROJECT_DIR$/../code/bundle/DataCraft.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/bundle/ImageCraft.py" beforeDir="false" afterPath="$PROJECT_DIR$/../code/bundle/ImageCraft.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../code/data/channels.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../code/data/channels.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../code/jupyter/CNN1_model.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../code/jupyter/CNN1_model.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/data/coordinates.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../code/data/coordinates.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/jupyter/CNN_A.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../code/jupyter/CNN_A.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/jupyter/CNN_B.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../code/jupyter/CNN_B.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/jupyter/CNN_C.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../code/jupyter/CNN_C.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../code/jupyter/RNN.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../code/jupyter/RNN.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../code/jupyter/data_analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../code/jupyter/data_analysis.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +78,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/University/Year 4 semester 1/ENCS5200/BrainWaveResearch/P300-Speller",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/media/qossay/New Volume/University/Year 4 semester 1/ENCS3340/ArabicNamedEntityRecognition/code",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -49,7 +97,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.10 (venv)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -76,6 +123,8 @@
       <workItem from="1733762935016" duration="1508000" />
       <workItem from="1733824165636" duration="2169000" />
       <workItem from="1735507534818" duration="31000" />
+      <workItem from="1736713283613" duration="2000" />
+      <workItem from="1736766500461" duration="22000" />
     </task>
     <servers />
   </component>
