@@ -1,6 +1,8 @@
 import os
 import pickle
 
+import numpy as np
+
 # remove this channel from the list
 electrode_names_to_remove = ['Fc5', 'Fc3', 'Fc1', 'Fcz', 'Fc2', 'Fc4', 'Fc6', 'Cp5', 'Cp3', 'Cp1', 'Cpz', 'Cp2', 'Cp4',
                 'Cp6', 'Af7', 'Af3', 'Afz', 'Af4', 'Af8', 'Ft7', 'Ft8', 'Tp7', 'Tp8', 'Po7', 'Po3', 'Poz', 'Po4', 'Po8']
@@ -93,3 +95,64 @@ def load_characters(characters_file_path="../../data/characters.txt"):
         print(f"Warning: Characters file not found at {characters_file_path}. Using default character set.")
         # Default character set if file not found
         return "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789_ "
+
+
+def convert_probabilities_to_78x2(data):
+    """
+    Convert probability dictionaries to shape (78, 2) matrices.
+    Each of the 36 characters gets two double values per row.
+
+    Args:
+        data: List of dictionaries containing character data
+
+    Returns:
+        List of dictionaries with probabilities converted to (78, 2) matrices
+    """
+    if not data:
+        print("No data to convert.")
+        return None
+
+    print("Converting probability dictionaries to (78, 2) matrices...")
+
+    # Get the list of characters in the vocabulary
+    sample_item = next((item for item in data if "next_char_probabilities" in item), None)
+    if not sample_item:
+        print("Error: No items with next_char_probabilities found.")
+        return None
+
+    # Extract the vocabulary and sort it for consistency
+    vocab = sorted(sample_item["next_char_probabilities"].keys())
+    vocab_size = len(vocab)
+    print(f"Vocabulary size: {vocab_size}")
+
+    # Check if we have enough rows to represent all characters
+    if vocab_size > 78:
+        print(f"Warning: Vocabulary size ({vocab_size}) exceeds target rows (78). Some characters will be omitted.")
+
+    for item in data:
+        if "next_char_probabilities" not in item:
+            print(f"Warning: Item missing next_char_probabilities. Skipping.")
+            continue
+
+        # Create a (78, 2) matrix filled with zeros
+        prob_matrix = np.zeros((78, 2))
+
+        # Fill the matrix with probability values
+        # Each character gets a row with two values
+        for i, char in enumerate(vocab):
+            if i < 78:  # Ensure we don't exceed the matrix dimensions
+                # Get the probability for this character
+                prob = item["next_char_probabilities"].get(char, 0.0)
+
+                # Set both values in the row to the probability
+                prob_matrix[i, 0] = prob
+                prob_matrix[i, 1] = prob
+
+        # Add the probability matrix to the item as converted_data
+        item["prob_chunk"] = prob_matrix
+
+        # Remove the original next_char_probabilities to save space
+        del item["next_char_probabilities"]
+
+    print(f"Converted {len(data)} items.")
+    return data
