@@ -15,7 +15,7 @@ class CharPredictor(nn.Module):
         out = self.fc(hidden)
         return out
 
-def load_nlp_model(vocab_size, path="../../model/api/char_predictor.pth"):
+def load_nlp_model(vocab_size, path="../../model/api/char_predictor_10.pth"):
     model = CharPredictor(vocab_size)
     model.load_state_dict(torch.load(path))
     model.eval()
