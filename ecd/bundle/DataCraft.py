@@ -142,17 +142,18 @@ def convert_probabilities_to_78x2(data):
         for i, char in enumerate(vocab):
             if i < 78:  # Ensure we don't exceed the matrix dimensions
                 # Get the probability for this character
-                prob = item["next_char_probabilities"].get(char, 0.0)
+                prob = item["next_char_probabilities"].get(char)
 
                 # Set both values in the row to the probability
-                prob_matrix[i, 0] = prob
-                prob_matrix[i, 1] = prob
+                prob_matrix[i*2, 0] = prob
+                prob_matrix[i*2, 1] = prob
+                prob_matrix[i*2+1, 0] = prob
+                prob_matrix[i*2+1, 1] = prob
 
         # Add the probability matrix to the item as converted_data
         item["prob_chunk"] = prob_matrix
 
         # Remove the original next_char_probabilities to save space
-        del item["next_char_probabilities"]
 
     print(f"Converted {len(data)} items.")
     return data
