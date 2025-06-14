@@ -1,6 +1,5 @@
 import os
 import pickle
-
 import numpy as np
 
 # remove this channel from the list
@@ -154,6 +153,76 @@ def convert_probabilities_to_78x2(data):
         item["prob_chunk"] = prob_matrix
 
         # Remove the original next_char_probabilities to save space
+        # del item["next_char_probabilities"]
 
     print(f"Converted {len(data)} items.")
+    return data
+
+
+def convert_probabilities_to_78x64(data):
+    """
+    Convert each 'next_char_probabilities' into a (78, 64) matrix
+    where each row is filled with the same scalar probability value,
+    and append it to the existing 'eeg_chunk' (a list of 30 (78, 64) arrays),
+    resulting in a final length of 31 matrices.
+
+    Args:
+        data: List of dictionaries with 'next_char_probabilities' and 'eeg_chunk'
+
+    Returns:
+        Updated list with 'eeg_chunk' extended by one matrix per item
+    """
+    if not data:
+        print("No data to convert.")
+        return None
+
+    print("Converting probability dictionaries to (78, 64) matrices...")
+
+    # Determine vocabulary
+    sample_item = next((item for item in data if "next_char_probabilities" in item), None)
+    if not sample_item:
+        print("Error: No items with next_char_probabilities found.")
+        return None
+
+    vocab = sorted(sample_item["next_char_probabilities"].keys())
+    vocab_size = len(vocab)
+    print(f"Vocabulary size: {vocab_size}")
+
+    if vocab_size > 78:
+        print(f"Warning: Vocabulary size ({vocab_size}) exceeds 78. Some characters will be omitted.")
+
+    for item in data:
+        if "next_char_probabilities" not in item or "eeg_chunk" not in item:
+            print(f"Warning: Skipping item with missing keys.")
+            continue
+
+        # Ensure eeg_chunk is a list (and not already extended)
+        if isinstance(item["eeg_chunk"], np.ndarray):
+            item["eeg_chunk"] = list(item["eeg_chunk"])
+        elif not isinstance(item["eeg_chunk"], list):
+            continue
+
+        if len(item["eeg_chunk"]) != 30:
+            print(f"Skipping item with unexpected eeg_chunk length: {len(item['eeg_chunk'])}")
+            continue
+
+        # Create a new matrix (78 rows, 64 columns)
+        prob_matrix = np.zeros((78, 64), dtype=np.float32)
+
+        for i, char in enumerate(vocab):
+            if i >= 78:
+                break
+
+            prob = item["next_char_probabilities"].get(char, 0.0)
+
+            # Fill the entire row with the same scalar probability
+            prob_matrix[i] = [prob] * 64
+
+        # Append the new matrix
+        item["eeg_chunk"].append(prob_matrix)
+
+        # Optional cleanup
+        # del item["next_char_probabilities"]
+
+    print(f"Successfully converted and extended {len(data)} items.")
     return data
