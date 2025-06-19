@@ -1,0 +1,43 @@
+==============================
+Basic tmux Usage for Training
+==============================
+
+1. Start a new tmux session:
+------------------------------
+tmux new -s train_session
+
+2. Activate Python virtual environment:
+---------------------------------------
+source /home/wghanem/GraduationProject/BrainWaveResearch/ecd/venv/bin/activate
+
+3. Run your training script:
+----------------------------
+python /home/wghanem/GraduationProject/BrainWaveResearch/ecd/jupyter/model/CNN.py
+
+OR (if inside the model folder):
+python CNN.py
+
+4. Detach from tmux session (keep running in background):
+----------------------------------------------------------
+Ctrl + B  then D
+
+5. Reattach to tmux later:
+--------------------------
+tmux attach -t train_session
+
+6. List all tmux sessions:
+--------------------------
+tmux ls
+
+7. Kill a tmux session:
+-----------------------
+tmux kill-session -t train_session
+
+8. Optional: Save training logs to file:
+----------------------------------------
+python CNN.py > train_log.txt 2>&1
+
+9. Exit tmux session completely:
+--------------------------------
+exit
+
