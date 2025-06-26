@@ -1,17 +1,9 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 # ===============================
 # 1. Imports
 # ===============================
 import sys
 import os
-
-# Add the path to the folder containing 'bundle' to sys.path
-sys.path.append(os.path.abspath("../../"))  # Adjust if needed
+sys.path.append(os.path.abspath("../../"))  # Adjust path to find 'bundle' folder
 
 import numpy as np
 import torch
@@ -26,9 +18,11 @@ from bundle.DataCraft import load_sentence_eeg_prob_data
 # 2. Constants and Configs
 # ===============================
 NUM_CLASSES = 36  # 26 letters + 9 digits + 1 underscore
-MODEL_SAVE_PATH = "trained_eegcnn_model.pth"
+MODEL_SAVE_PATH = "trained_eegcnn_model_selected_channels.pth"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(DEVICE)
+print(f"Using device: {DEVICE}")
+
+SELECTED_CHANNELS = [10, 33, 48, 50, 52, 55, 59, 61]  # Only 8 selected EEG channels
 
 # ===============================
 # 3. Dataset Class
@@ -43,15 +37,13 @@ class EEGDataset(Dataset):
 
     def __getitem__(self, idx):
         chunk = np.array(self.data[idx]["eeg_chunk"], dtype=np.float32)  # (31, 78, 64)
+        chunk = chunk[:, :, SELECTED_CHANNELS]  # Now (31, 78, 8)
+        chunk[30] *= 3.0  # Emphasize the prediction timestep
         label = self.label_encoder.transform([self.data[idx]["character"]])[0]
-
-        # Emphasize prediction timestep (index 30) by multiplying
-        chunk[30] *= 2.0
-
-        return torch.tensor(chunk).unsqueeze(0), torch.tensor(label)  # Add channel dim: (1, 31, 78, 64)
+        return torch.tensor(chunk).unsqueeze(0), torch.tensor(label)  # Shape: (1, 31, 78, 8)
 
 # ===============================
-# 4. SE Block
+# 4. Squeeze-and-Excite Block
 # ===============================
 class SEBlock(nn.Module):
     def __init__(self, channels, reduction=16):
@@ -71,7 +63,7 @@ class SEBlock(nn.Module):
         return x * y.expand_as(x)
 
 # ===============================
-# 5. Model Definition
+# 5. EEGCNN Model
 # ===============================
 class EEGCNN(nn.Module):
     def __init__(self, num_classes=NUM_CLASSES):
@@ -81,12 +73,10 @@ class EEGCNN(nn.Module):
 
         self.conv2 = nn.Conv3d(32, 64, kernel_size=3, padding=1)
         self.bn2 = nn.BatchNorm3d(64)
-
         self.se1 = SEBlock(64)
 
         self.conv3 = nn.Conv3d(64, 128, kernel_size=3, padding=1)
         self.bn3 = nn.BatchNorm3d(128)
-
         self.se2 = SEBlock(128)
 
         self.pool = nn.AdaptiveAvgPool3d(1)
@@ -95,16 +85,15 @@ class EEGCNN(nn.Module):
         self.fc2 = nn.Linear(64, num_classes)
 
     def forward(self, x):
-        x = F.relu(self.bn1(self.conv1(x)))       # -> (B, 32, 31, 78, 64)
-        x = F.relu(self.bn2(self.conv2(x)))       # -> (B, 64, 31, 78, 64)
+        # Input: (B, 1, 31, 78, 8)
+        x = F.relu(self.bn1(self.conv1(x)))       # -> (B, 32, 31, 78, 8)
+        x = F.relu(self.bn2(self.conv2(x)))       # -> (B, 64, 31, 78, 8)
         x = self.se1(x)
-
-        x = F.relu(self.bn3(self.conv3(x)))       # -> (B, 128, 31, 78, 64)
+        x = F.relu(self.bn3(self.conv3(x)))       # -> (B, 128, 31, 78, 8)
         x = self.se2(x)
-
         x = self.pool(x).squeeze()                # -> (B, 128)
         x = self.dropout(F.relu(self.fc1(x)))     # -> (B, 64)
-        return self.fc2(x)                        # -> (B, 37)
+        return self.fc2(x)                        # -> (B, NUM_CLASSES)
 
 # ===============================
 # 6. Load and Prepare Data
@@ -126,7 +115,7 @@ train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=8)
 
 # ===============================
-# 7. Train Loop
+# 7. Training Function
 # ===============================
 def train_model(model, loader, optimizer, criterion, epochs=10):
     model.train()
@@ -142,18 +131,16 @@ def train_model(model, loader, optimizer, criterion, epochs=10):
             total_loss += loss.item()
 
             if i % 10 == 0:
-                print(f"[Epoch {epoch+1}] Batch {i+1}/{len(loader)}, Loss: {loss.item():.4f}")
+                print(f"[Epoch {epoch+1}] Batch {i+1}/{len(loader)} | Loss: {loss.item():.4f}")
 
         print(f"Epoch {epoch+1}/{epochs} complete. Total Loss: {total_loss:.4f}")
         torch.cuda.empty_cache()
 
-    # Save the model after training
     torch.save(model.state_dict(), MODEL_SAVE_PATH)
     print(f"Model saved to: {MODEL_SAVE_PATH}")
 
-
 # ===============================
-# 8. Evaluation
+# 8. Evaluation Function
 # ===============================
 def evaluate_model(model, loader):
     model.eval()
@@ -165,11 +152,10 @@ def evaluate_model(model, loader):
             preds = outputs.argmax(dim=1)
             correct += (preds == targets).sum().item()
             total += targets.size(0)
-
-    print(f"Accuracy: {correct / total:.2%}")
+    print(f"Test Accuracy: {correct / total:.2%}")
 
 # ===============================
-# 9. Run It
+# 9. Train and Evaluate
 # ===============================
 model = EEGCNN().to(DEVICE)
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
@@ -179,10 +165,9 @@ train_model(model, train_loader, optimizer, criterion, epochs=50)
 evaluate_model(model, test_loader)
 
 # ===============================
-# 10. Load 
+# 10. Reload Trained Model (Optional)
 # ===============================
 model = EEGCNN()
-model.load_state_dict(torch.load("trained_eegcnn_model.pth"))
+model.load_state_dict(torch.load(MODEL_SAVE_PATH))
 model.to(DEVICE)
 model.eval()
-
