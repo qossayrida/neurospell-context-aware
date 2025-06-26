@@ -96,126 +96,40 @@ def load_characters(characters_file_path="../../data/characters.txt"):
         return "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789_ "
 
 
-def convert_probabilities_to_78x2(data):
+def json_to_78x64(prob_dict):
     """
-    Convert probability dictionaries to shape (78, 2) matrices.
-    Each of the 36 characters gets two double values per row.
+    Converts a JSON file of character probabilities to a (78, 64) numpy array structure.
 
     Args:
-        data: List of dictionaries containing character data
+        prob_dict: JSON file containing character probabilities
 
     Returns:
-        List of dictionaries with probabilities converted to (78, 2) matrices
+        numpy.ndarray: A (78, 64) matrix where each row contains the probability values
+                       repeated to fill 64 columns, and this pattern is repeated for 78 rows
     """
-    if not data:
-        print("No data to convert.")
+
+    # Get vocabulary in correct order
+    vocab = load_characters()
+
+    # Convert dictionary to ordered list of probabilities
+    try:
+        prob_list = [prob_dict.get(char, 0.0) for char in vocab]
+    except AttributeError:
+        print("Error: JSON data must be a dictionary of character probabilities")
         return None
 
-    print("Converting probability dictionaries to (78, 2) matrices...")
-
-    # Get the list of characters in the vocabulary
-    sample_item = next((item for item in data if "next_char_probabilities" in item), None)
-    if not sample_item:
-        print("Error: No items with next_char_probabilities found.")
+    # Verify we have exactly 37 probabilities
+    if len(prob_list) != 37:
+        print(f"Error: Expected 37 probabilities, got {len(prob_list)}")
         return None
 
-    # Extract the vocabulary and sort it for consistency
-    vocab = sorted(sample_item["next_char_probabilities"].keys())
-    vocab_size = len(vocab)
-    print(f"Vocabulary size: {vocab_size}")
+    # Create single row by repeating probabilities to fill 64 columns
+    repeat_factor = (64 // 37) + 1
+    single_row = (prob_list * repeat_factor)[:64]
 
-    # Check if we have enough rows to represent all characters
-    if vocab_size > 78:
-        print(f"Warning: Vocabulary size ({vocab_size}) exceeds target rows (78). Some characters will be omitted.")
+    # Create full (78, 64) matrix by repeating the row
+    matrix = np.tile(single_row, (78, 1))
 
-    for item in data:
-        if "next_char_probabilities" not in item:
-            print(f"Warning: Item missing next_char_probabilities. Skipping.")
-            continue
+    return matrix
 
-        # Create a (78, 2) matrix filled with zeros
-        prob_matrix = np.zeros((78, 2))
-
-        # Fill the matrix with probability values
-        # Each character gets a row with two values
-        for i, char in enumerate(vocab):
-            if i < 78:  # Ensure we don't exceed the matrix dimensions
-                # Get the probability for this character
-                prob = item["next_char_probabilities"].get(char)
-
-                # Set both values in the row to the probability
-                prob_matrix[i*2, 0] = prob
-                prob_matrix[i*2, 1] = prob
-                prob_matrix[i*2+1, 0] = prob
-                prob_matrix[i*2+1, 1] = prob
-
-        # Add the probability matrix to the item as converted_data
-        item["prob_chunk"] = prob_matrix
-
-        # Remove the original next_char_probabilities to save space
-        # del item["next_char_probabilities"]
-
-    print(f"Converted {len(data)} items.")
-    return data
-
-
-
-def convert_probabilities_to_78x64(data):
-    """
-    Convert each 'next_char_probabilities' into a (78, 64) matrix
-    where each row is filled with the same repeated probability pattern.
-    Append this matrix to the existing 'eeg_chunk', resulting in 31 matrices.
-
-    Args:
-        data: List of dictionaries with 'next_char_probabilities' and 'eeg_chunk'
-
-    Returns:
-        Updated list with 'eeg_chunk' extended by one matrix per item
-    """
-    if not data:
-        print("No data to convert.")
-        return None
-
-    print("Converting probability dictionaries to (78, 64) matrices...")
-
-    # Find vocab keys from any valid item
-    sample_item = next((item for item in data if "next_char_probabilities" in item), None)
-    if not sample_item:
-        print("Error: No items with next_char_probabilities found.")
-        return None
-
-    vocab = sorted(sample_item["next_char_probabilities"].keys())
-    vocab_size = len(vocab)
-    print(f"Vocabulary size: {vocab_size}")
-
-    if vocab_size != 37:
-        print(f"Warning: Expected 37 probabilities, got {vocab_size}. Adjusting fill pattern accordingly.")
-
-    for item in data:
-        if "next_char_probabilities" not in item or "eeg_chunk" not in item:
-            print(f"Warning: Skipping item with missing keys.")
-            continue
-
-        # Ensure eeg_chunk is a list
-        if isinstance(item["eeg_chunk"], np.ndarray):
-            item["eeg_chunk"] = list(item["eeg_chunk"])
-        elif not isinstance(item["eeg_chunk"], list):
-            continue
-
-        if len(item["eeg_chunk"]) != 30:
-            print(f"Skipping item with unexpected eeg_chunk length: {len(item['eeg_chunk'])}")
-            continue
-
-        # Create the repeated 64-length pattern
-        probs = [item["next_char_probabilities"].get(char, 0.0) for char in vocab[:37]]
-        repeated_row = (probs * ((64 // len(probs)) + 1))[:64]  # Repeat and truncate to 64
-
-        # Create matrix (78 rows, each same as repeated_row)
-        prob_matrix = np.tile(repeated_row, (78, 1)).astype(np.float32)
-
-        # Append to eeg_chunk
-        item["eeg_chunk"].append(prob_matrix)
-
-    print(f"Successfully converted and extended {len(data)} items.")
-    return data
 
