@@ -179,7 +179,7 @@ model = EEGCNN().to(DEVICE)
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 criterion = nn.CrossEntropyLoss()
 
-train_model(model, train_loader, optimizer, criterion, epochs=50)
+train_model(model, train_loader, optimizer, criterion, epochs=200)
 evaluate_model(model, test_loader)
 
 # ===============================
