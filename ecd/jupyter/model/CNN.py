@@ -4,6 +4,7 @@
 import sys
 import os
 sys.path.append(os.path.abspath("../../"))  # Adjust path to find 'bundle' folder
+sys.path.append("/home/wghanem/GraduationProject/BrainWaveResearch/ecd/bundle")
 
 import numpy as np
 import torch
