@@ -159,12 +159,12 @@ def convert_probabilities_to_78x2(data):
     return data
 
 
+
 def convert_probabilities_to_78x64(data):
     """
     Convert each 'next_char_probabilities' into a (78, 64) matrix
-    where each row is filled with the same scalar probability value,
-    and append it to the existing 'eeg_chunk' (a list of 30 (78, 64) arrays),
-    resulting in a final length of 31 matrices.
+    where each row is filled with the same repeated probability pattern.
+    Append this matrix to the existing 'eeg_chunk', resulting in 31 matrices.
 
     Args:
         data: List of dictionaries with 'next_char_probabilities' and 'eeg_chunk'
@@ -178,7 +178,7 @@ def convert_probabilities_to_78x64(data):
 
     print("Converting probability dictionaries to (78, 64) matrices...")
 
-    # Determine vocabulary
+    # Find vocab keys from any valid item
     sample_item = next((item for item in data if "next_char_probabilities" in item), None)
     if not sample_item:
         print("Error: No items with next_char_probabilities found.")
@@ -188,15 +188,15 @@ def convert_probabilities_to_78x64(data):
     vocab_size = len(vocab)
     print(f"Vocabulary size: {vocab_size}")
 
-    if vocab_size > 78:
-        print(f"Warning: Vocabulary size ({vocab_size}) exceeds 78. Some characters will be omitted.")
+    if vocab_size != 37:
+        print(f"Warning: Expected 37 probabilities, got {vocab_size}. Adjusting fill pattern accordingly.")
 
     for item in data:
         if "next_char_probabilities" not in item or "eeg_chunk" not in item:
             print(f"Warning: Skipping item with missing keys.")
             continue
 
-        # Ensure eeg_chunk is a list (and not already extended)
+        # Ensure eeg_chunk is a list
         if isinstance(item["eeg_chunk"], np.ndarray):
             item["eeg_chunk"] = list(item["eeg_chunk"])
         elif not isinstance(item["eeg_chunk"], list):
@@ -206,23 +206,16 @@ def convert_probabilities_to_78x64(data):
             print(f"Skipping item with unexpected eeg_chunk length: {len(item['eeg_chunk'])}")
             continue
 
-        # Create a new matrix (78 rows, 64 columns)
-        prob_matrix = np.zeros((78, 64), dtype=np.float32)
+        # Create the repeated 64-length pattern
+        probs = [item["next_char_probabilities"].get(char, 0.0) for char in vocab[:37]]
+        repeated_row = (probs * ((64 // len(probs)) + 1))[:64]  # Repeat and truncate to 64
 
-        for i, char in enumerate(vocab):
-            if i >= 78:
-                break
+        # Create matrix (78 rows, each same as repeated_row)
+        prob_matrix = np.tile(repeated_row, (78, 1)).astype(np.float32)
 
-            prob = item["next_char_probabilities"].get(char, 0.0)
-
-            # Fill the entire row with the same scalar probability
-            prob_matrix[i] = [prob] * 64
-
-        # Append the new matrix
+        # Append to eeg_chunk
         item["eeg_chunk"].append(prob_matrix)
-
-        # Optional cleanup
-        # del item["next_char_probabilities"]
 
     print(f"Successfully converted and extended {len(data)} items.")
     return data
+
