@@ -3,8 +3,7 @@
 # ===============================
 import sys
 import os
-sys.path.append(os.path.abspath("../../"))  # Adjust path to find 'bundle' folder
-sys.path.append("/home/wghanem/GraduationProject/BrainWaveResearch/ecd/bundle")
+
 
 import numpy as np
 import torch
@@ -13,7 +12,25 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
-from bundle.DataCraft import load_sentence_eeg_prob_data
+
+def load_sentence_eeg_prob_data(sentences_eeg_filepath="../../data/sentences_eeg.pkl"):
+    """Loads the final processed data list from a pickle file."""
+    print(f"Attempting to load processed data from: {sentences_eeg_filepath}")
+    if not os.path.exists(sentences_eeg_filepath):
+        print(f"Error: File not found at {sentences_eeg_filepath}.")
+        return None
+    try:
+        with open(sentences_eeg_filepath, "rb") as f:
+            data = pickle.load(f)
+        print("Successfully loaded processed data.")
+        if isinstance(data, list):
+            return data
+        else:
+            print(f"Error: Loaded object is not a list (type: {type(data)}). Returning None.")
+            return None
+    except Exception as e:
+        print(f"An unexpected error occurred during loading processed data: {e}")
+        return None
 
 # ===============================
 # 2. Constants and Configs
