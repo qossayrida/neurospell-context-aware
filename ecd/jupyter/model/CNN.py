@@ -56,7 +56,6 @@ class EEGDataset(Dataset):
     def __getitem__(self, idx):
         chunk = np.array(self.data[idx]["eeg_chunk"], dtype=np.float32)  # (31, 78, 64)
         chunk = chunk[:, :, SELECTED_CHANNELS]  # Now (31, 78, 8)
-        chunk[30] *= 3.0  # Emphasize the prediction timestep
         label = self.label_encoder.transform([self.data[idx]["character"]])[0]
         return torch.tensor(chunk).unsqueeze(0), torch.tensor(label)  # Shape: (1, 31, 78, 8)
 
@@ -129,8 +128,8 @@ train_data, test_data = train_test_split(raw_data, test_size=0.2, random_state=4
 train_dataset = EEGDataset(train_data, label_encoder)
 test_dataset = EEGDataset(test_data, label_encoder)
 
-train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True)
-test_loader = DataLoader(test_dataset, batch_size=8)
+train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=64)
 
 # ===============================
 # 7. Training Function
