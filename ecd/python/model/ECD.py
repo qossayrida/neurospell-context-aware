@@ -13,7 +13,7 @@ from torch.utils.data import Dataset, DataLoader
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
-def load_sentence_eeg_prob_data(sentences_eeg_filepath="../../data/sentences_eeg.pkl"):
+def load_sentence_eeg_prob_data(sentences_eeg_filepath="../../data/sentences_eeg_set2.pkl"):
     """Loads the final processed data list from a pickle file."""
     print(f"Attempting to load processed data from: {sentences_eeg_filepath}")
     if not os.path.exists(sentences_eeg_filepath):
@@ -36,7 +36,7 @@ def load_sentence_eeg_prob_data(sentences_eeg_filepath="../../data/sentences_eeg
 # 2. Constants and Configs
 # ===============================
 NUM_CLASSES = 36  # 26 letters + 9 digits + 1 underscore
-MODEL_SAVE_PATH = "trained_eegcnn_model_selected_channels.pth"
+MODEL_SAVE_PATH = "trained_eegcnn_model_selected_channels_set2.pth"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {DEVICE}")
 
@@ -178,7 +178,7 @@ model = EEGCNN().to(DEVICE)
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 criterion = nn.CrossEntropyLoss()
 
-train_model(model, train_loader, optimizer, criterion, epochs=200)
+train_model(model, train_loader, optimizer, criterion, epochs=150)
 evaluate_model(model, test_loader)
 
 # ===============================
