@@ -128,8 +128,8 @@ train_data, test_data = train_test_split(raw_data, test_size=0.2, random_state=4
 train_dataset = EEGDataset(train_data, label_encoder)
 test_dataset = EEGDataset(test_data, label_encoder)
 
-train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
-test_loader = DataLoader(test_dataset, batch_size=64)
+train_loader = DataLoader(train_dataset, batch_size=128, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=128)
 
 # ===============================
 # 7. Training Function
