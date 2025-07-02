@@ -13,7 +13,7 @@ from torch.utils.data import Dataset, DataLoader
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
-def load_sentence_eeg_prob_data(sentences_eeg_filepath="../../data/sentences_eeg_set2.pkl"):
+def load_sentence_eeg_prob_data(sentences_eeg_filepath="../../data/sentences_eeg_train_set2.pkl"):
     """Loads the final processed data list from a pickle file."""
     print(f"Attempting to load processed data from: {sentences_eeg_filepath}")
     if not os.path.exists(sentences_eeg_filepath):

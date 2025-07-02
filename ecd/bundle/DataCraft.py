@@ -62,7 +62,7 @@ def load_characters_eeg(characters_eeg_filepath="../../data/characters_eeg.pkl")
         return None
 
 # --- Optional: Add a function to load the final data ---
-def load_sentence_eeg_prob_data(sentences_eeg_filepath="../../data/sentences_eeg.pkl"):
+def load_sentence_eeg_prob_data(sentences_eeg_filepath="../../data/sentences_eeg_train_set1.pkl"):
     """Loads the final processed data list from a pickle file."""
     print(f"Attempting to load processed data from: {sentences_eeg_filepath}")
     if not os.path.exists(sentences_eeg_filepath):
