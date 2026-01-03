@@ -41,8 +41,22 @@ def load_sentence_eeg_prob_data(sentences_eeg_filepath):
 # ===============================
 NUM_CLASSES = 36  # 26 letters + 9 digits + 1 underscore
 MODEL_SAVE_PATH = "trained_eegcnn_model_selected_channels_set1_31windows.pth"
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"Using device: {DEVICE}")
+
+# Check CUDA availability and compatibility
+if torch.cuda.is_available():
+    try:
+        # Try to create a small tensor on CUDA to test compatibility
+        test_tensor = torch.zeros(1).cuda()
+        del test_tensor
+        DEVICE = torch.device("cuda")
+        print(f"Using device: CUDA ({torch.cuda.get_device_name(0)})")
+    except Exception as e:
+        print(f"CUDA available but incompatible: {e}")
+        print("Falling back to CPU")
+        DEVICE = torch.device("cpu")
+else:
+    DEVICE = torch.device("cpu")
+    print(f"Using device: CPU")
 
 SELECTED_CHANNELS = [10, 33, 48, 50, 52, 55, 59, 61]  # Only 8 selected EEG channels
 
