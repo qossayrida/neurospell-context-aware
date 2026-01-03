@@ -10,11 +10,11 @@ electrode_names_to_remove = ['Fc5', 'Fc3', 'Fc1', 'Fcz', 'Fc2', 'Fc4', 'Fc6', 'C
 def print_data(signals, word, contributor_selected, sampling_frequency):
 
     recording_duration= (len(signals)) * (len(signals[0])) / (sampling_frequency * 60)
-    trials = len(word[0])
+    num_chars = len(word)
 
 
     print("{:<15} {:<20} {:<20} {:<10} {:<30}".format(
-        "Contributor", "Sampling Freq. (Hz)", "Recording (min)", "Trials", "Spelled Word"
+        "Contributor", "Sampling Freq. (Hz)", "Recording (min)", "Chars", "Spelled Word"
     ))
     print("=" * 110)
 
@@ -26,7 +26,7 @@ def print_data(signals, word, contributor_selected, sampling_frequency):
     contributor_selected,
     "{:.2f}".format(sampling_frequency),
     "{:.2f}".format(recording_duration),
-    trials,
+    num_chars,
     word_chunks[0] if word_chunks else ""
     ))
 

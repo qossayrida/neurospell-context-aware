@@ -1,0 +1,16 @@
+numpy
+torch
+tensorflow
+scikit-learn
+matplotlib
+scipy
+seaborn
+pandas
+data/contributor_I.mat
+data/contributor_II.mat
+data/sentences_eeg_train.pkl
+data/sentences_eeg_val.pkl
+
+.idea
+
+*/__pycache__/*
