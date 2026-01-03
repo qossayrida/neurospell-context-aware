@@ -8,7 +8,7 @@ tmux new -s train_session
 
 2. Activate Python virtual environment:
 ---------------------------------------
-source /home/wghanem/GraduationProject/BrainWaveResearch/ecd/venv/bin/activate
+source venv/bin/activate
 
 3. Run your training script:
 ----------------------------

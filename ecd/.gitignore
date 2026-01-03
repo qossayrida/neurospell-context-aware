@@ -10,6 +10,9 @@ data/contributor_I.mat
 data/contributor_II.mat
 data/sentences_eeg_train.pkl
 data/sentences_eeg_val.pkl
+data/sentences_eeg_train_I.pkl
+data/sentences_eeg_val_I.pkl
+data/characters_eeg_I.pkl
 
 .idea
 
