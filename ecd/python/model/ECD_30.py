@@ -45,14 +45,17 @@ MODEL_SAVE_PATH = "trained_eegcnn_model_selected_channels_set1.pth"
 # Check CUDA availability and compatibility
 if torch.cuda.is_available():
     try:
-        # Try to create a small tensor on CUDA to test compatibility
-        test_tensor = torch.zeros(1).cuda()
-        del test_tensor
+        # Test with actual Conv3d operation to catch sm_61 incompatibility
+        test_conv = torch.nn.Conv3d(1, 1, kernel_size=3, padding=1).cuda()
+        test_input = torch.zeros(1, 1, 4, 4, 4).cuda()
+        _ = test_conv(test_input)
+        del test_conv, test_input, _
+        torch.cuda.empty_cache()
         DEVICE = torch.device("cuda")
         print(f"Using device: CUDA ({torch.cuda.get_device_name(0)})")
     except Exception as e:
-        print(f"CUDA available but incompatible: {e}")
-        print("Falling back to CPU")
+        print(f"CUDA incompatible with this GPU: {str(e)[:100]}")
+        print("Falling back to CPU (training will be slower but functional)")
         DEVICE = torch.device("cpu")
 else:
     DEVICE = torch.device("cpu")
