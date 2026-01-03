@@ -157,8 +157,8 @@ label_encoder.fit(all_labels)
 train_dataset = EEGDataset(train_data, label_encoder)
 test_dataset = EEGDataset(test_data, label_encoder)
 
-train_loader = DataLoader(train_dataset, batch_size=128, shuffle=True)
-test_loader = DataLoader(test_dataset, batch_size=128)
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=32)
 
 print(f"Training samples: {len(train_dataset)}")
 print(f"Validation samples: {len(test_dataset)}")
