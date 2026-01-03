@@ -12,7 +12,7 @@ source /home/wghanem/GraduationProject/BrainWaveResearch/ecd/venv/bin/activate
 
 3. Run your training script:
 ----------------------------
-python /home/wghanem/GraduationProject/BrainWaveResearch/ecd/jupyter/model/CNN.py
+python /home/wghanem/ecd/jupyter/model/CNN.py
 
 OR (if inside the model folder):
 python CNN.py

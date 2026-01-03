@@ -48,12 +48,5 @@ This project presents a hybrid Brain-Computer Interface (BCI) system that enhanc
 - **Qossay Rida**  
 - **Mohammad Zidan** 
 
-Supervised by **Dr. Wasel Ghanem**  
+Supervised by **Dr. Wasel Ghanem** and **Aziz Qaroush**
 Faculty of Engineering & Technology, Birzeit University, 2025
-
-
-## Future Work
-
-- Real-time deployment for clinical use  
-- Adaptive interfaces that learn user preferences  
-- Integration with other biosignals (e.g., EMG, eye-tracking)

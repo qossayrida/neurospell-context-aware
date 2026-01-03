@@ -2,3 +2,6 @@ ecd/data/Contributor_I.mat
 ecd/data/Contributor_II.mat
 ecd/data/characters_eeg.pkl
 ecd/data/sentences_eeg.pkl
+
+# Ignore all files in the data directory
+ecd/venv/
