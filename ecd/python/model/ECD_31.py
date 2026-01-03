@@ -141,8 +141,8 @@ print("=" * 80)
 print("LOADING DATA (31 Windows Version)")
 print("=" * 80)
 
-train_data = load_sentence_eeg_prob_data("../../data/sentences_eeg_train.pkl")
-test_data = load_sentence_eeg_prob_data("../../data/sentences_eeg_val.pkl")
+train_data = load_sentence_eeg_prob_data("../../data/sentences_eeg_train_I.pkl")
+test_data = load_sentence_eeg_prob_data("../../data/sentences_eeg_val_I.pkl")
 
 if not train_data:
     raise ValueError("Training data failed to load. Check path or preprocessing.")
