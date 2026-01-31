@@ -13,6 +13,8 @@ data/sentences_eeg_val.pkl
 data/sentences_eeg_train_I.pkl
 data/sentences_eeg_val_I.pkl
 data/characters_eeg_I.pkl
+data/characters_eeg_*.pkl
+data/sentences_eeg_*.pkl
 
 .idea
 
